@@ -2,6 +2,7 @@
 
 return [
     'skip_to_content' => 'Skip to content',
+    'close' => 'Close',
     'primary_navigation' => 'Primary navigation',
     'foundation_nav_note' => 'Foundation build',
 

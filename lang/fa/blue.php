@@ -2,6 +2,7 @@
 
 return [
     'skip_to_content' => 'پرش به محتوا',
+    'close' => 'بستن',
     'primary_navigation' => 'ناوبری اصلی',
     'foundation_nav_note' => 'نسخهٔ پایه',
 

@@ -5,13 +5,30 @@
     position: relative;
     display: inline-block;
 
+    &__trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-1);
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--color-text-secondary);
+        font-size: inherit;
+        cursor: help;
+
+        &:hover,
+        &:focus-visible {
+            color: var(--color-text-primary);
+        }
+    }
+
     &__bubble {
         position: absolute;
         inset-block-start: calc(100% + var(--space-2));
         inset-inline-start: 50%;
         transform: translateX(-50%);
         z-index: 30;
-        inline-width: max-content;
+        inline-size: max-content;
         max-inline-size: 16rem;
         padding: var(--space-2) var(--space-3);
         border-radius: var(--radius-sm);

@@ -58,16 +58,28 @@ content**.
 `modules/navigation.js` via the opener's `aria-controls`. Used by the public
 header for the mobile nav; reusable for any overlay panel.
 
-## `x-ui.dialog` / `x-ui.dropdown` / `x-ui.tooltip`
+## `x-ui.dialog`
 
-Overlay primitives in SCSS + `modules/accessibility.js`:
+`<x-ui.dialog id labelledby title>` — overlay with scrim
+(`data-dialog-close`), close button, `role="dialog" aria-modal="true"`,
+`aria-labelledby`. Opened by any element with
+`data-dialog-open="{{ $id }}"`; behavior in `modules/accessibility.js`:
+focus moves in on open, Esc + backdrop + close button hide, focus restored
+to the opener. Centering is RTL-correct (mirrored translate).
 
-- Dialog: `[data-dialog]`, opened by `[data-dialog-open="id"]`, closed by
-  `[data-dialog-close]`, backdrop click, Esc; focus moves in on open and is
-  restored on close.
-- Dropdown: `[data-dropdown-trigger]` + `[data-dropdown-menu]` with
-  `role="menuitem"` items; ArrowUp/Down, Enter/Space, Esc, click-outside.
-- Tooltip: `data-tooltip`/`data-tooltip-target` (see JS module).
+## `x-ui.dropdown`
+
+`<x-ui.dropdown label>` with `role="menuitem"` items in the slot.
+Hooks: `[data-dropdown-trigger]` + `[data-dropdown-menu]`; behavior in
+`modules/accessibility.js`: click toggle, outside-click close, ArrowUp/Down,
+Esc + focus return, `aria-expanded` synced.
+
+## `x-ui.tooltip`
+
+`<x-ui.tooltip text>trigger</x-ui.tooltip>` — CSS-driven accessible tooltip
+(`:hover` + `:focus-within` reveal, `aria-describedby` on the trigger,
+`role="tooltip"` bubble, `prefers-reduced-motion` honored). No JS needed;
+hides when focus leaves. `placement="top|bottom"`.
 
 ## `x-public.header`
 

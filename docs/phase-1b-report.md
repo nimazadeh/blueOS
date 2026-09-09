@@ -70,7 +70,9 @@ verification gate (see Risks).
 ## 3. Components created
 
 `resources/views/components/`:
-- `ui/`: button, badge, section-heading, empty-state, drawer
+- `ui/`: button, badge, section-heading, empty-state, drawer,
+  dialog, dropdown, tooltip (all overlay primitives RTL-verified in SCSS;
+  dialog centering mirror-corrected after RTL audit)
 - `public/`: header, footer
 - `products/`: product-card, featured-list
 - `services/`: service-card, featured-grid
