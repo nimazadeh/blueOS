@@ -1,0 +1,68 @@
+// Minimal modern reset. Direction-agnostic: no left/right declarations.
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100dvh;
+    line-height: var(--leading-normal);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--leading-tight);
+    overflow-wrap: break-word;
+}
+
+p {
+    overflow-wrap: break-word;
+}
+
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+    padding: 0;
+}

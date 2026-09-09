@@ -1,6 +1,6 @@
 # ADR-014 — Toolchain & Environments (Sandbox Gap)
 
-- **Status:** Accepted
+- **Status:** Accepted (amended 2026-09-09, Phase 1A)
 - **Date:** 2026-09-09
 - **Supersedes:** none
 
@@ -49,3 +49,27 @@ this sandbox today.
 - ⚠️ Risk: if no provisioned environment becomes available, implementation is
   confined to frontend assets/docs; explicitly tracked in
   [`../phase-0-report.md`](../phase-0-report.md) risks.
+
+## Amendment (Phase 1A, 2026-09-09)
+
+**Context changed:** `codeload.github.com` turned out to be reachable
+(HTTP 200), so the official Laravel 13.10.1 skeleton was obtained from source
+without Composer. npm registry remains reachable (frontend pipeline verified
+locally: `npm ci` + `npm run build` succeeded). A PHP **8.5.10 CLI** (identical
+target version) is available through the maintained `@php-wasm/cli` npm package,
+which enabled real `php -l` syntax validation of all PHP files — without a local
+PHP runtime.
+
+**Decision remains:** local execution of Laravel/MySQL is not possible in this
+sandbox (no PHP binary with extensions, no Composer/Packagist, no DB server, no
+Docker). Verification therefore uses two honest paths:
+
+1. **Frontend + syntax:** verified in the sandbox (Vite build, PHP 8.5 lint).
+2. **Runtime:** GitHub Actions CI (`.github/workflows/ci.yml`) — PHP 8.5, MySQL
+   8.4 service, Pint, PHPStan, Pest — executed on GitHub's runners, reachable
+   from the sandbox via `gh`. CI results are the authoritative "tests run" gate.
+
+Package sources effectively-reachable list: `api.github.com`,
+`codeload.github.com`, `registry.npmjs.org`. Still blocked: apt, Packagist,
+getcomposer.org, GitHub release assets, Playwright browser CDN.
+

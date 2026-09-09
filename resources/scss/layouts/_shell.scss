@@ -1,0 +1,55 @@
+// Application shell — logical properties everywhere.
+// No physical left/right/margin-left/… anywhere in this codebase (ADR-013).
+
+.app-shell {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100dvh;
+}
+
+.app-main {
+    padding-block: var(--space-7);
+    padding-inline: var(--space-4);
+}
+
+.site-header,
+.site-footer {
+    background-color: var(--color-bg-surface);
+    border-block: var(--border);
+}
+
+.site-header__inner,
+.site-footer__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    max-inline-size: 72rem;
+    margin-inline: auto;
+    padding: var(--space-4) var(--space-5);
+}
+
+.site-brand {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    font-size: var(--text-h3-size);
+}
+
+.site-nav__note {
+    color: var(--color-text-secondary);
+    font-size: var(--text-small-size);
+}
+
+.locale-switcher__button {
+    padding-block: var(--space-1);
+    padding-inline: var(--space-3);
+    border-radius: var(--radius-sm);
+    border: var(--border);
+    color: var(--color-text-secondary);
+    font-size: var(--text-small-size);
+
+    &:hover {
+        color: var(--color-text-primary);
+        border-color: var(--color-border-strong);
+    }
+}

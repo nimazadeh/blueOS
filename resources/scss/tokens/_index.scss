@@ -1,0 +1,9 @@
+// Design tokens — single entry. Every layer imports from here; raw values
+// must never appear in component styles.
+
+@use 'colors';
+@use 'spacing';
+@use 'radius';
+@use 'typography';
+@use 'motion';
+@use 'shadows';

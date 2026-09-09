@@ -1,0 +1,39 @@
+// Accessibility utilities — Phase 1A baseline.
+// Focus visibility is a hard requirement (docs/accessibility.md).
+
+:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+}
+
+.skip-link {
+    position: absolute;
+    inset-block-start: var(--space-1);
+    inset-inline-start: var(--space-2);
+    z-index: 100;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-accent);
+    color: var(--color-bg-deep);
+    font-weight: var(--font-weight-medium);
+
+    // Only visible on keyboard focus.
+    transform: translateY(-200%);
+
+    &:focus {
+        transform: translateY(0);
+    }
+}
+
+// Reduced motion baseline (Phase 1A): no animation exists yet, but the
+// safety net does — decorations and transitions must respect it.
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

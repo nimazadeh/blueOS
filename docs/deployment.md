@@ -4,6 +4,12 @@
 infrastructure decision made with the owner when Phase 1 begins (no provider is
 locked in).
 
+**Phase 1A update:** the *foundation* of this strategy now exists in-repo —
+`docker-compose.yml` (app/nginx/mysql/node), `docker/php/Dockerfile` (PHP 8.5-FPM
+with the Laravel extension set), `docker/nginx/default.conf`, and
+`.github/workflows/ci.yml` (PHP 8.5 + MySQL 8.4 + Vite build + tests). Staging/
+production image building and promotion remain future work.
+
 ---
 
 ## 1. Environments

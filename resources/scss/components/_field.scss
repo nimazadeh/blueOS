@@ -1,0 +1,53 @@
+// Form field — accessible foundation. Labels are explicit in markup;
+// this styles them. Logical padding/margins keep RTL geometry correct.
+
+.field {
+    display: grid;
+    gap: var(--space-2);
+    margin-block-end: var(--space-4);
+
+    &__label {
+        font-size: var(--text-label-size);
+        font-weight: var(--font-weight-medium);
+        color: var(--color-text-secondary);
+    }
+
+    &__input {
+        width: 100%;
+        min-block-size: 44px;
+        padding-block: var(--space-2);
+        padding-inline: var(--space-4);
+        border-radius: var(--radius-sm);
+        border: var(--border);
+        background-color: var(--color-bg-inset);
+        color: var(--color-text-primary);
+
+        &:focus-visible {
+            outline: 2px solid var(--color-focus-ring);
+            outline-offset: 2px;
+            border-color: var(--color-focus-ring);
+        }
+    }
+
+    &--inline {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-size: var(--text-small-size);
+        color: var(--color-text-secondary);
+    }
+}
+
+.form-error {
+    margin-block-end: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-danger);
+    background-color: var(--color-danger-soft);
+    color: var(--color-text-primary);
+    font-size: var(--text-small-size);
+
+    ul {
+        padding-inline-start: var(--space-4);
+    }
+}

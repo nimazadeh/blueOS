@@ -1,0 +1,36 @@
+// Root application styles: background, colors, font selection by direction.
+// Direction is set on <html dir> — components use logical properties only.
+
+:root {
+    color-scheme: dark;
+}
+
+html,
+body {
+    background-color: var(--color-bg-deep);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: var(--text-body-size);
+    font-weight: var(--font-weight-regular);
+}
+
+// Persian (RTL) typography selection — the font stack, not a "flip".
+html[dir='rtl'] body,
+html[dir='rtl'] button,
+html[dir='rtl'] input,
+html[dir='rtl'] textarea,
+html[dir='rtl'] select {
+    font-family: var(--font-sans-fa);
+}
+
+::selection {
+    background-color: var(--color-accent);
+    color: var(--color-bg-deep);
+}
+
+// Technical strings must stay LTR regardless of page direction (ADR-013).
+[dir='ltr'],
+.ltr {
+    direction: ltr;
+    unicode-bidi: isolate;
+}

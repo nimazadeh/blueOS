@@ -1,51 +1,57 @@
 # Blue Studio OS
 
-Blue Studio OS — the platform for **Blue Studio**, a digital product and software studio.
-
-This repository is currently in **Phase 0 — Foundation, Discovery & Architecture**.
-No application code exists yet. This phase establishes the technical blueprint that all
-future phases must follow.
-
-## Repository state
-
-- **Greenfield** — no Laravel application, no schema, no assets, no tests exist yet.
-- The only tracked file at the start of Phase 0 was this README.
-- Phase 0 delivers the documentation set under [`docs/`](docs/README.md).
-
-## Documentation
-
-| Area | Location |
-|---|---|
-| Documentation index | [`docs/README.md`](docs/README.md) |
-| Product vision | [`docs/vision.md`](docs/vision.md) |
-| System architecture | [`docs/architecture.md`](docs/architecture.md) |
-| Information architecture | [`docs/information-architecture.md`](docs/information-architecture.md) |
-| Database design | [`docs/database.md`](docs/database.md) |
-| Design system | [`docs/design-system.md`](docs/design-system.md) |
-| Animation system | [`docs/animation-system.md`](docs/animation-system.md) |
-| Three.js architecture | [`docs/threejs-architecture.md`](docs/threejs-architecture.md) |
-| Media architecture | [`docs/media-architecture.md`](docs/media-architecture.md) |
-| Security | [`docs/security.md`](docs/security.md) |
-| SEO | [`docs/seo.md`](docs/seo.md) |
-| Accessibility | [`docs/accessibility.md`](docs/accessibility.md) |
-| Performance | [`docs/performance.md`](docs/performance.md) |
-| Testing | [`docs/testing.md`](docs/testing.md) |
-| QA strategy | [`docs/qa.md`](docs/qa.md) |
-| Deployment | [`docs/deployment.md`](docs/deployment.md) |
-| Roadmap | [`docs/roadmap.md`](docs/roadmap.md) |
-| Blue Control (admin) | [`docs/admin-blue-control.md`](docs/admin-blue-control.md) |
-| Lead management | [`docs/lead-management.md`](docs/lead-management.md) |
-| Analytics events | [`docs/analytics.md`](docs/analytics.md) |
-| Environment record | [`docs/environment.md`](docs/environment.md) |
-| Architecture decision records | [`docs/adr/`](docs/adr/) |
-| Phase 0 report | [`docs/phase-0-report.md`](docs/phase-0-report.md) |
+**Blue Studio OS** is the platform for **Blue Studio** — a digital product and
+software studio. It is being built as a modular Laravel monolith: server-rendered
+public site (Blade/Vite/SCSS), **Blue Control** admin (Livewire, `/admin`), MySQL 8,
+bilingual English/Persian (RTL-first), SEO/security/accessibility as architecture —
+not afterthoughts.
 
 ## Status
 
-```
-PHASE 0 STATUS: PASS WITH RISKS
+| Phase | Status |
+|---|---|
+| Phase 0 — Foundation, Discovery & Architecture | ✅ complete (`docs/phase-0-report.md`) |
+| **Phase 1A — Foundation Core Implementation** | ✅ complete (`docs/phase-1a-report.md`) |
+| Phase 1B — Design System & Public Experience | ⏳ next (not started) |
+
+## What Phase 1A delivered
+
+- Laravel 13 (PHP 8.5 target) project with modular monolith structure
+  (`app/Core` + `app/Domains`).
+- MySQL 8 foundation: users/sessions/settings/activity migrations; Docker Compose
+  (PHP-FPM 8.5 + MySQL 8.4 + nginx + optional node) for reproducible development.
+- Design-token SCSS foundation (colors/spacing/radius/motion/typography),
+  logical-property RTL baseline, `en`/`fa` locale registry + direction system.
+- Authentication foundation (admin guard, throttled login, session regeneration,
+  no seeded credentials — `php artisan blue:create-admin`) and the protected
+  `/admin` boundary (Blue Control placeholder, no CRUD yet).
+- Core services boundaries: Settings, Slug, SEO (`MetaResolver`), Media
+  (validation + disk), Activity (audit).
+- Quality foundation: Pest 5 + PHPUnit 13.3, Pint, PHPStan/Larastan, Vite 8 +
+  sass build, GitHub Actions CI (PHP 8.5 + MySQL 8.4), 8 test suites.
+- Integration/code-style docs: `docs/development.md`,
+  `docs/architecture-implementation.md`.
+
+**Verification:** frontend build + PHP 8.5.10 syntax lint verified in the
+workspace; full runtime suite runs on GitHub Actions CI (see
+[`docs/environment.md`](docs/environment.md) and ADR-0014 for why local PHP/MySQL
+execution is not possible in this sandbox).
+
+## Quick start
+
+```bash
+cp .env.example .env
+docker compose up -d --build
+docker compose exec app composer install
+docker compose exec app php artisan key:generate
+docker compose exec app php artisan migrate --seed
+# open http://localhost:8000
 ```
 
-See [`docs/phase-0-report.md`](docs/phase-0-report.md) for detail. Phase 1 must not
-begin until this report has been reviewed and the toolchain gap described in
-[`docs/environment.md`](docs/environment.md) is explicitly accepted or resolved.
+Full instructions: [`docs/development.md`](docs/development.md).
+
+## Documentation
+
+All documentation lives in [`docs/`](docs/README.md) — architecture decision
+records (`docs/adr/`), design blueprints, security/SEO/accessibility specs,
+testing/QA/deployment strategy, and the phase reports.

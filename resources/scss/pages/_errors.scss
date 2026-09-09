@@ -1,0 +1,18 @@
+// Branded error pages.
+
+.error-page {
+    display: grid;
+    place-content: center;
+    gap: var(--space-3);
+    min-height: 100dvh;
+    padding: var(--space-5);
+    text-align: center;
+
+    &__title {
+        font-size: var(--text-h1-size);
+    }
+
+    &__lead {
+        color: var(--color-text-secondary);
+    }
+}

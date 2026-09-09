@@ -1,0 +1,39 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Color tokens — Blue Studio OS
+// Direction (Phase 1A): deep navy surfaces, blue-gray cards, bright blue accent,
+// accessible soft-white text. Pure black is never used as a background.
+// Final values are refined in Phase 1B with contrast verification.
+// ─────────────────────────────────────────────────────────────────────────────
+
+:root {
+    // Surfaces
+    --color-bg-deep: #0a1220;
+    --color-bg-surface: #111c2e;
+    --color-bg-elevated: #1a2740;
+    --color-bg-inset: #0d1626;
+
+    // Accent
+    --color-accent: #3b82f6;
+    --color-accent-hover: #5b96f8;
+    --color-accent-soft: rgb(59 130 246 / 0.14);
+
+    // Text
+    --color-text-primary: #f2f5fa;
+    --color-text-secondary: #9fb0c8;
+    --color-text-disabled: #5c6c85;
+
+    // Borders & dividers
+    --color-border: #22304a;
+    --color-border-strong: #31435f;
+
+    // Semantic (restrained)
+    --color-danger: #e5484d;
+    --color-danger-soft: rgb(229 72 77 / 0.12);
+    --color-warning: #f5a524;
+    --color-warning-soft: rgb(245 165 36 / 0.12);
+    --color-success: #30a46c;
+    --color-success-soft: rgb(48 164 108 / 0.12);
+
+    // Focus ring
+    --color-focus-ring: #7ab8ff;
+}

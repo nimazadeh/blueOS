@@ -1,0 +1,8 @@
+// Blue Control entry (Vite input). Shares the token/base layer with the
+// public site; admin-specific components land with the Blue Control phase.
+
+@use 'tokens';
+@use 'base';
+@use 'components';
+@use 'layouts';
+@use 'utilities';

@@ -9,20 +9,23 @@ written.
 1. [`environment.md`](environment.md) — what was actually discovered (toolchain, network, repo)
 2. [`vision.md`](vision.md) — what Blue Studio OS is, for whom, and why
 3. [`architecture.md`](architecture.md) — the system blueprint (stack, boundaries, code layout)
-4. [`information-architecture.md`](information-architecture.md) — public site IA, URLs, funnels
-5. [`database.md`](database.md) — conceptual + logical schema
-6. [`design-system.md`](design-system.md) — tokens and RTL-first visual foundation
-7. [`media-architecture.md`](media-architecture.md) — assets, variants, storage abstraction
-8. [`admin-blue-control.md`](admin-blue-control.md) — the Blue Control CMS architecture
-9. [`lead-management.md`](lead-management.md) — lead capture and lifecycle
-10. [`seo.md`](seo.md) — technical SEO model
-11. [`security.md`](security.md) — security foundation
-12. [`animation-system.md`](animation-system.md) + [`threejs-architecture.md`](threejs-architecture.md) — motion & 3D
-13. [`accessibility.md`](accessibility.md) + [`performance.md`](performance.md) — quality gates
-14. [`testing.md`](testing.md) + [`qa.md`](qa.md) — how quality is proven
-15. [`deployment.md`](deployment.md) — environments and release path
-16. [`roadmap.md`](roadmap.md) — what ships in v1 and what does not
-17. [`phase-0-report.md`](phase-0-report.md) — the required final Phase 0 report
+4. [`architecture-implementation.md`](architecture-implementation.md) — **what is actually implemented** (Phase 1A structure, conventions, deferred items)
+5. [`development.md`](development.md) — local setup (Docker/native), commands, env vars
+6. [`information-architecture.md`](information-architecture.md) — public site IA, URLs, funnels
+7. [`database.md`](database.md) — conceptual + logical schema
+8. [`design-system.md`](design-system.md) — tokens and RTL-first visual foundation
+9. [`media-architecture.md`](media-architecture.md) — assets, variants, storage abstraction
+10. [`admin-blue-control.md`](admin-blue-control.md) — the Blue Control CMS architecture
+11. [`lead-management.md`](lead-management.md) — lead capture and lifecycle
+12. [`seo.md`](seo.md) — technical SEO model
+13. [`security.md`](security.md) — security foundation
+14. [`animation-system.md`](animation-system.md) + [`threejs-architecture.md`](threejs-architecture.md) — motion & 3D
+15. [`accessibility.md`](accessibility.md) + [`performance.md`](performance.md) — quality gates
+16. [`testing.md`](testing.md) + [`qa.md`](qa.md) — how quality is proven
+17. [`deployment.md`](deployment.md) — environments and release path
+18. [`roadmap.md`](roadmap.md) — what ships in v1 and what does not
+19. [`phase-0-report.md`](phase-0-report.md) — Phase 0 final report
+20. [`phase-1a-report.md`](phase-1a-report.md) — Phase 1A final report (current)
 
 ## Architecture Decision Records (ADRs)
 
