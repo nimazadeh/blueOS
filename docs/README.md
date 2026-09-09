@@ -56,3 +56,13 @@ considered / Consequences. They are immutable once accepted; supersede with a ne
   unprefixed URL set; see [`information-architecture.md`](information-architecture.md#localization-and-urls).
 - Every schema reference here is authoritative for Phase 1 migrations; if a change
   is needed later, update this doc **and** add/update an ADR.
+
+## Phase 2 (implemented)
+
+- [`admin.md`](admin.md) — Blue Control: routes, RBAC, sections, safety.
+- [`domains.md`](domains.md) — products/portfolio/services/leads/media
+  domain contracts and conventions.
+- [`media.md`](media.md) — media system implementation (storage, delivery,
+  validation).
+- [`database.md`](database.md) — §11: Phase 2 implemented schema.
+- [`phase-2-report.md`](phase-2-report.md) — Phase 2 status report.

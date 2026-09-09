@@ -53,6 +53,26 @@ h3,
     font-weight: var(--font-weight-medium);
 }
 
+// Inline text link (accent, hover emphasis, visible focus).
+.link {
+    color: var(--color-accent);
+    font-weight: var(--font-weight-medium);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent-soft);
+    text-underline-offset: 3px;
+
+    &:hover {
+        color: var(--color-accent-hover);
+        text-decoration-color: currentcolor;
+    }
+
+    &:focus-visible {
+        outline: 3px solid var(--color-focus-ring);
+        outline-offset: 2px;
+        border-radius: var(--radius-xs);
+    }
+}
+
 // Section eyebrow — small caps kicker above headings. Latin only for
 // uppercase/tracking; Persian uses weight instead (ADR-013).
 .eyebrow {

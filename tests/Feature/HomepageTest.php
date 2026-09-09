@@ -1,14 +1,14 @@
 <?php
 
 use App\Core\Seo\MetaResolver;
-use Illuminate\Support\Facades\Route;
 
-it('serves the Phase 1B homepage', function () {
+it('serves the Phase 2 homepage', function () {
     $this->get(route('home'))
         ->assertOk()
         ->assertSee('Blue Studio OS', false)
         ->assertSee('data-locale-switcher', false)
-        ->assertSee('data-nav-toggle', false);
+        ->assertSee('data-nav-toggle', false)
+        ->assertSee('action="'.route('leads.store').'"', false);
 });
 
 it('renders SEO metadata in the document head', function () {
@@ -22,20 +22,11 @@ it('renders SEO metadata in the document head', function () {
         ->assertSee('property="og:type"', false);
 });
 
-it('renders the real services catalog as cards', function () {
-    $count = count(config('blue.services.preview'));
-
-    $this->get(route('home'))
-        ->assertOk()
-        ->assertSee('id="services"', false)
-        ->assertSee('service-card', false)
-        ->assertSee(config('blue.services.preview.0.title.en'), false);
-});
-
-it('renders accessible empty states for products and portfolio (no fake content)', function () {
+it('renders empty states when the database has no content', function () {
     $this->get(route('home'))
         ->assertOk()
         ->assertSee('No products published yet', false)
+        ->assertSee('No services published yet', false)
         ->assertSee('No portfolio projects yet', false);
 });
 

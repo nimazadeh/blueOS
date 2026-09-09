@@ -2,25 +2,35 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Domains\Leads\Models\Lead;
+use App\Domains\Portfolio\Models\PortfolioProject;
+use App\Domains\Products\Models\Product;
+use App\Domains\Services\Models\Service;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\ActivityLog;
+use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
     /**
-     * Blue Control dashboard placeholder.
-     *
-     * Phase 1A only proves the admin boundary: this route requires the
-     * `admin` guard and renders the admin layout. Real metrics and widgets
-     * arrive with the Blue Control phase.
+     * Blue Control dashboard — visibility, not analytics. Counts use indexed
+     * status columns; no premature metrics tables.
      */
-    public function __invoke()
+    public function __invoke(): View
     {
-        /** @var User $user */
-        $user = auth('admin')->user();
-
         return view('admin.dashboard', [
-            'user' => $user,
+            'counts' => [
+                'products' => Product::query()->published()->count(),
+                'portfolio' => PortfolioProject::query()->published()->count(),
+                'services' => Service::query()->published()->count(),
+                'new_leads' => Lead::query()->where('status', Lead::STATUS_NEW)->count(),
+            ],
+            'recentActivity' => ActivityLog::query()
+                ->with('actor')
+                ->latest()
+                ->limit(10)
+                ->get(),
+            'totalLeads' => Lead::query()->count(),
         ]);
     }
 }

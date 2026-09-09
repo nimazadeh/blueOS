@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'disk' => env('MEDIA_DISK', 'local'),
+    'disk' => env('MEDIA_DISK', 'media'),
 
     'max_upload_bytes' => (int) env('MEDIA_MAX_UPLOAD_BYTES', 12 * 1024 * 1024),
 

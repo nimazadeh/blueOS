@@ -26,6 +26,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'guest.admin' => App\Http\Middleware\RedirectIfAdminAuthenticated::class,
         ]);
+
+        // Unauthenticated accesses to `auth:admin` routes land on Blue Control
+        // login (not the framework default `login` route name).
+        $middleware->redirectGuestsTo(fn () => route('admin.login'));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

@@ -3,28 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Core\Seo\MetaResolver;
+use App\Domains\Portfolio\Models\PortfolioProject;
+use App\Domains\Products\Models\Product;
+use App\Domains\Services\Models\Service;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
     /**
-     * Public homepage v1.
+     * Public homepage — powered by the database (Phase 2).
      *
-     * Phase 1B: presentation-only. Products and portfolio are intentionally
-     * empty (real content arrives with their domains — nothing is fabricated);
-     * services come from the real service catalog in config/blue.php.
+     * Only published content surfaces; empty collections render the design
+     * system empty states rather than invented content.
      */
-    public function __invoke(MetaResolver $resolver): \Illuminate\View\View
+    public function __invoke(MetaResolver $resolver): View
     {
-        $locale = app()->getLocale();
+        $products = Product::query()
+            ->published()
+            ->with('media')
+            ->orderByDesc('featured')
+            ->orderByDesc('published_at')
+            ->limit(6)
+            ->get();
 
-        // Presentation data for the current locale only; views never resolve
-        // translations themselves (architecture rule).
-        $services = collect(config('blue.services.preview'))
-            ->map(fn (array $service) => [
-                'icon' => $service['icon'],
-                'title' => $service['title'][$locale] ?? $service['title']['en'],
-                'description' => $service['description'][$locale] ?? $service['description']['en'],
-            ]);
+        $services = Service::query()
+            ->published()
+            ->ordered()
+            ->limit(6)
+            ->get();
+
+        $projects = PortfolioProject::query()
+            ->published()
+            ->with('media')
+            ->orderByDesc('featured')
+            ->orderByDesc('published_at')
+            ->limit(6)
+            ->get();
 
         $meta = $resolver->resolve(__('blue.home.title'), [
             'description' => __('blue.home.meta_description'),
@@ -34,7 +48,9 @@ class HomeController extends Controller
 
         return view('home', [
             'meta' => $meta,
+            'products' => $products,
             'services' => $services,
+            'projects' => $projects,
         ]);
     }
 }

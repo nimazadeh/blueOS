@@ -1,5 +1,5 @@
 @props([
-    'services' => [],   // Presentation data from config/blue.php (real offerings).
+    'services' => collect(),   // Published Service models (empty → empty state).
 ])
 
 <section class="section" id="services" aria-labelledby="services-title">
@@ -11,14 +11,17 @@
             :description="__('blue.services.description')"
         />
 
-        <div class="service-grid">
-            @foreach ($services as $service)
-                <x-services.service-card
-                    :icon="$service['icon'] ?? '◆'"
-                    :title="$service['title']"
-                    :description="$service['description']"
-                />
-            @endforeach
-        </div>
+        @if ($services->isEmpty())
+            <x-ui.empty-state
+                :title="__('blue.services.empty_title')"
+                :description="__('blue.services.empty_description')"
+            />
+        @else
+            <div class="service-grid">
+                @foreach ($services as $service)
+                    <x-services.service-card :service="$service" />
+                @endforeach
+            </div>
+        @endif
     </div>
 </section>

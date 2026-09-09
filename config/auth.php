@@ -16,7 +16,10 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
+        // Blue Control is the authenticated surface in v1; the public site is
+        // anonymous. Making `admin` the default guard lets Gate / `can:`
+        // middleware resolve the operator consistently (see docs/admin.md).
+        'guard' => env('AUTH_GUARD', 'admin'),
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
 

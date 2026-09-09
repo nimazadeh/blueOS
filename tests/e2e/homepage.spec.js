@@ -54,9 +54,18 @@ test.describe('Homepage — Phase 1B foundation', () => {
             await expect(page.locator(`#${id}`)).toBeVisible();
         }
 
-        // Both collections are intentionally empty at this phase.
+        // All collections are intentionally empty until the operator publishes.
         await expect(page.getByText('No products published yet')).toBeVisible();
+        await expect(page.getByText('No services published yet')).toBeVisible();
         await expect(page.getByText('No portfolio projects yet')).toBeVisible();
+    });
+
+    test('renders the lead-generation form in the CTA section', async ({ page }) => {
+        await page.goto('/');
+
+        await expect(page.locator('#start-project form')).toBeVisible();
+        await expect(page.locator('#start-project input[name="email"]')).toBeVisible();
+        await expect(page.locator('#start-project textarea[name="message"]')).toBeVisible();
     });
 
     test('opens and closes the mobile navigation drawer', async ({ page }, testInfo) => {

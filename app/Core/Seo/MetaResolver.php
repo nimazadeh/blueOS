@@ -2,19 +2,27 @@
 
 namespace App\Core\Seo;
 
+use App\Core\Settings\SettingsService;
 use Illuminate\Support\Str;
 
 /**
- * Resolves per-page SEO metadata (foundation).
+ * Resolves per-page SEO metadata.
  *
- * Fallback chain (full version arrives with the SEO domain):
- *   explicit route/page values → entity SEO record (later) → site defaults.
+ * Fallback chain:
+ *   explicit route/page values (e.g. entity fields) → operator settings
+ *   (site.name, seo.default_description) → framework config defaults.
  *
  * Every public page must receive a Meta instance through this resolver —
- * views never build SEO metadata themselves.
+ * views never build SEO metadata themselves. SettingsService is optional so
+ * the resolver stays usable outside a booted database (unit tests).
  */
 class MetaResolver
 {
+    public function __construct(
+        private readonly ?SettingsService $settings = null,
+    ) {
+    }
+
     /**
      * @param  array<string, mixed>  $overrides  title, description, canonical,
      *          robots, og_type, og_title, og_description, og_image,
@@ -23,7 +31,8 @@ class MetaResolver
     public function resolve(string $title, array $overrides = []): Meta
     {
         $defaults = config('blue.seo.defaults', []);
-        $siteName = config('blue.site.name', 'Blue Studio');
+        $siteName = $this->settings?->get('site.name')
+            ?? config('blue.site.name', 'Blue Studio');
 
         $baseTitle = rtrim($title, ' -');
         $suffix = (string) ($defaults['title_suffix'] ?? $siteName);
@@ -37,7 +46,12 @@ class MetaResolver
         return new Meta(
             title: $this->clean($resolvedTitle, 70),
             description: $this->clean(
-                (string) ($overrides['description'] ?? $defaults['description'] ?? ''),
+                (string) (
+                    $overrides['description']
+                    ?? $this->settings?->get('seo.default_description')
+                    ?? $defaults['description']
+                    ?? ''
+                ),
                 160,
             ),
             canonical: is_string($canonical) ? $canonical : null,

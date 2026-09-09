@@ -1,9 +1,5 @@
 @extends('layouts.public.app', ['meta' => $meta])
 
-@section('head')
-    {{-- Page-specific head extras (e.g. preloads) land here. --}}
-@endsection
-
 @section('content')
     {{-- ── Hero ──────────────────────────────────────────────────────────── --}}
     <section class="hero" aria-labelledby="hero-title">
@@ -18,7 +14,7 @@
                     <x-ui.button href="#start-project" size="lg">
                         {{ __('blue.home.cta_start') }}
                     </x-ui.button>
-                    <x-ui.button href="#products" variant="secondary" size="lg">
+                    <x-ui.button href="{{ route('products.index') }}" variant="secondary" size="lg">
                         {{ __('blue.home.cta_products') }}
                     </x-ui.button>
                 </div>
@@ -29,23 +25,26 @@
         </div>
     </section>
 
-    {{-- ── Featured products (empty state, no fabricated content) ────────── --}}
-    <x-products.featured-list :products="collect()" />
+    {{-- ── Featured products (database-driven, empty state when none) ─────── --}}
+    <x-products.featured-list :products="$products" />
 
-    {{-- ── Services (real offering catalog) ──────────────────────────────── --}}
+    {{-- ── Services (database-driven) ─────────────────────────────────────── --}}
     <x-services.featured-grid :services="$services" />
 
-    {{-- ── Portfolio preview (empty state) ───────────────────────────────── --}}
-    <x-portfolio.preview-list :projects="collect()" />
+    {{-- ── Portfolio preview (database-driven) ─────────────────────────────── --}}
+    <x-portfolio.preview-list :projects="$projects" />
 
-    {{-- ── Lead-generation CTA ───────────────────────────────────────────── --}}
+    {{-- ── Lead-generation CTA ─────────────────────────────────────────────── --}}
     <section class="cta-section" id="start-project" aria-labelledby="cta-title">
         <div class="container">
             <div class="cta-section__panel" data-reveal>
                 <p class="eyebrow">{{ __('blue.home.cta_eyebrow') }}</p>
                 <h2 id="cta-title" class="cta-section__title text-h2">{{ __('blue.home.cta_title') }}</h2>
                 <p class="cta-section__description">{{ __('blue.home.cta_description') }}</p>
-                <x-ui.badge tone="warning" :dot="true">{{ __('blue.home.cta_status') }}</x-ui.badge>
+
+                <x-public.lead-form
+                    :project-types="['web-app', 'saas', 'integration', 'automation', 'other']"
+                />
             </div>
         </div>
     </section>
