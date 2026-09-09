@@ -1,0 +1,40 @@
+// Root application styles: theme application, direction, base palette.
+
+:root {
+    color-scheme: dark;
+}
+
+[data-theme='light'] {
+    color-scheme: light;
+}
+
+html,
+body {
+    background-color: var(--color-bg-deep);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: var(--font-weight-regular);
+    transition: background-color var(--motion-base) var(--ease-out);
+}
+
+// Persian (RTL) typography selection — the font stack, not a "flip".
+html[dir='rtl'] body,
+html[dir='rtl'] button,
+html[dir='rtl'] input,
+html[dir='rtl'] textarea,
+html[dir='rtl'] select {
+    font-family: var(--font-sans-fa);
+}
+
+::selection {
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+}
+
+// Technical strings must stay LTR regardless of page direction (ADR-013).
+[dir='ltr'],
+.ltr {
+    direction: ltr;
+    unicode-bidi: isolate;
+}

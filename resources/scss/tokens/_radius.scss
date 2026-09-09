@@ -1,0 +1,11 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Radius scale. Consistent per element type; no random radii.
+// ─────────────────────────────────────────────────────────────────────────────
+
+:root {
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-full: 999px;
+}

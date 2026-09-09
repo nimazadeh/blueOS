@@ -1,0 +1,18 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Motion tokens. Tokens only — no animations are implemented in Phase 1A.
+// Phase 1B introduces the reduced-motion baseline and micro-interactions.
+// ─────────────────────────────────────────────────────────────────────────────
+
+:root {
+    --motion-fast: 150ms;
+    --motion-base: 300ms;
+    --motion-slow: 500ms;
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+    --distance-sm: 8px;
+    --distance-md: 16px;
+    --distance-lg: 32px;
+    --stagger-step: 70ms;
+}

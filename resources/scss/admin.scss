@@ -1,0 +1,10 @@
+// Blue Control entry (Vite input). Shares fonts/tokens/base/components with
+// the public site; admin-specific components land with the Blue Control phase.
+
+@use 'fonts';
+@use 'tokens';
+@use 'base';
+@use 'components';
+@use 'layouts';
+@use 'utilities';
+@use 'pages/admin';

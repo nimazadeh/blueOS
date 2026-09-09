@@ -1,0 +1,19 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Breakpoint tokens (Phase 1B).
+// Mobile-first. SCSS map drives media queries; CSS custom properties expose
+// the same values for JS where needed.
+// ─────────────────────────────────────────────────────────────────────────────
+
+$breakpoints: (
+    'mobile': 320px,
+    'tablet': 768px,
+    'desktop': 1280px,
+    'large': 1440px,
+);
+
+:root {
+    --bp-mobile: 320px;
+    --bp-tablet: 768px;
+    --bp-desktop: 1280px;
+    --bp-large: 1440px;
+}

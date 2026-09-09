@@ -1,0 +1,29 @@
+// Self-hosted font faces (Phase 1B).
+// Two families, subsetted, total ~96 KB across 3 files:
+//   Inter Variable (latin, wght 100-900)     — Latin UI
+//   Vazirmatn (arabic subset, 400 + 700)     — Persian UI
+// Registered with the exact stack used in tokens/_typography.scss.
+
+@font-face {
+    font-family: 'Inter Variable';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('../fonts/inter-latin-wght-normal.woff2') format('woff2-variations');
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/vazirmatn-arabic-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Vazirmatn';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/vazirmatn-arabic-700-normal.woff2') format('woff2');
+}

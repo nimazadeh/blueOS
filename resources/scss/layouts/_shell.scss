@@ -1,0 +1,12 @@
+// Application shell — grid scaffold. Layout components (header/footer/
+// container/section) live in their own partials.
+
+.app-shell {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100dvh;
+}
+
+.app-main {
+    overflow: clip; // contain decorative overflow, never break layout
+}

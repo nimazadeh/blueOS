@@ -1,0 +1,187 @@
+// Public domain pages — product/portfolio/service detail + index extras.
+// All layouts come from the container/section primitives; these styles are
+// content-specific only (no ad-hoc colors).
+
+.section--first {
+    padding-block-start: var(--space-7);
+}
+
+// ── Detail page shell ────────────────────────────────────────────────────────
+
+.page-detail {
+    &__header {
+        padding-block: var(--space-7) var(--space-6);
+        border-block-end: 1px solid var(--color-border);
+        background-color: var(--color-bg-surface);
+
+        &--case {
+            background-color: var(--color-bg-inset);
+        }
+    }
+
+    &__lead {
+        max-inline-size: 46rem;
+        margin-block-start: var(--space-4);
+        color: var(--color-text-secondary);
+    }
+
+    &__layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+        gap: var(--space-7);
+        padding-block: var(--space-6);
+
+        @media (max-width: 1023px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__main {
+        display: grid;
+        gap: var(--space-6);
+        align-content: start;
+        min-inline-size: 0;
+    }
+
+    &__aside {
+        display: grid;
+        gap: var(--space-4);
+        align-content: start;
+        position: sticky;
+        inset-block-start: calc(var(--space-5) + 72px);
+
+        @media (max-width: 1023px) {
+            position: static;
+        }
+    }
+
+    &__figure {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        background-color: var(--color-bg-inset);
+
+        img {
+            inline-size: 100%;
+            block-size: auto;
+            display: block;
+        }
+    }
+
+    &__cta {
+        margin-block-start: var(--space-4);
+    }
+}
+
+// ── Case study sections ──────────────────────────────────────────────────────
+
+.case-section {
+    padding-block: var(--space-2);
+
+    h2 {
+        margin-block-end: var(--space-3);
+    }
+
+    p {
+        max-inline-size: 46rem;
+        color: var(--color-text-secondary);
+    }
+}
+
+// ── Prose / feature lists ────────────────────────────────────────────────────
+
+.prose {
+    max-inline-size: 46rem;
+
+    p {
+        color: var(--color-text-secondary);
+        line-height: var(--leading-relaxed);
+    }
+}
+
+.feature-list {
+    display: grid;
+    gap: var(--space-3);
+    list-style: none;
+    padding: 0;
+    max-inline-size: 46rem;
+
+    &__item {
+        display: grid;
+        gap: var(--space-1);
+        padding: var(--space-4);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        background-color: var(--color-bg-surface);
+    }
+
+    &__title {
+        color: var(--color-text-primary);
+    }
+
+    &__description {
+        color: var(--color-text-secondary);
+        font-size: var(--text-small);
+    }
+}
+
+// ── Technology chips ─────────────────────────────────────────────────────────
+
+.chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    padding: 0;
+}
+
+// ── Gallery grids ────────────────────────────────────────────────────────────
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+
+    img {
+        inline-size: 100%;
+        block-size: auto;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--color-border);
+    }
+
+    @media (max-width: 767px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+// ── Lead form (public CTA) ───────────────────────────────────────────────────
+
+.lead-form {
+    max-inline-size: 44rem;
+    margin-inline: auto;
+    margin-block-start: var(--space-6);
+    text-align: start;
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 var(--space-5);
+
+        @media (max-width: 767px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__message {
+        grid-column: 1 / -1;
+    }
+
+    &__success {
+        padding: var(--space-4);
+        border: 1px solid var(--color-success);
+        border-radius: var(--radius-sm);
+        background-color: var(--color-success-soft);
+        color: var(--color-text-primary);
+        font-size: var(--text-small);
+        margin-block-end: var(--space-5);
+    }
+}

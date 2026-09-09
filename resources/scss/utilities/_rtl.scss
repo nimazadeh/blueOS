@@ -1,0 +1,13 @@
+// RTL utilities. Logical properties should cover most needs; these helpers
+// exist for the rare cases where direction-aware transforms are required
+// (e.g. directional icons — ADR-013).
+
+[dir='rtl'] .flip-in-rtl {
+    transform: scaleX(-1);
+}
+
+// Persian numerals should appear in editorial contexts only; technical
+// strings (versions, URLs) keep Latin digits via dir=ltr isolation.
+.fa-numerals {
+    font-variant-numeric: persian;
+}

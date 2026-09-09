@@ -1,0 +1,13 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: 5
+    paths:
+        - app
+    tmpDir: .phpstan-cache
+    excludePaths:
+        analyse:
+            - app/Http/Controllers/Controller.php
+    treatPhpDocTypesAsCertain: false
+    checkMissingIterableValueType: false

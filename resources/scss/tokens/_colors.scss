@@ -1,0 +1,76 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Color tokens — Blue Design System (Phase 1B).
+// Dark theme is the default; a complete light theme ships alongside it.
+// Pure black is never a background. Accent maintains ≥ 4.5:1 contrast against
+// its button text in both themes (verified — see docs/design-system.md).
+// ─────────────────────────────────────────────────────────────────────────────
+
+:root {
+    // ── Dark theme (default) ────────────────────────────────────────────────
+    --color-bg-deep: #0f1220;        // page background (deep navy, never black)
+    --color-bg-surface: #171b2c;     // cards / panels
+    --color-bg-elevated: #1e2336;    // elevated surfaces, popovers
+    --color-bg-inset: #12151f;       // inputs, code wells
+
+    --color-accent: #6c92ff;             // links, icons — 6.38:1 on bg-deep (AA)
+    --color-accent-hover: #8fb3ff;
+    --color-accent-soft: rgb(108 146 255 / 0.14);
+    --color-accent-surface: #3767f0;     // filled action surfaces — white text 4.82:1 (AA)
+    --color-accent-surface-hover: #2f66f4; // white text 4.85:1 (AA)
+    --color-on-accent: #ffffff;
+
+    --color-text-primary: #eef2f9;   // soft white
+    --color-text-secondary: #9aa7bd;
+    --color-text-disabled: #5d6b82;
+
+    --color-border: #262d42;
+    --color-border-strong: #39415c;
+
+    --color-danger: #f2555a;
+    --color-danger-hover: #ff7075;
+    --color-danger-soft: rgb(242 85 90 / 0.12);
+    --color-warning: #f5a524;
+    --color-warning-soft: rgb(245 165 36 / 0.12);
+    --color-success: #3dd68c;
+    --color-success-soft: rgb(61 214 140 / 0.12);
+
+    --color-focus-ring: #8fb3ff;
+
+    // Overlay scrims (dialogs, drawers)
+    --color-scrim: rgb(6 9 18 / 0.72);
+}
+
+// ── Light theme (complete, same token API) ──────────────────────────────────
+// Applied via `data-theme="light"` on <html>.
+[data-theme='light'] {
+    --color-bg-deep: #f5f6fa;
+    --color-bg-surface: #ffffff;
+    --color-bg-elevated: #f0f2f8;
+    --color-bg-inset: #ffffff;
+
+    --color-accent: #2a5ae2;             // links, icons — 5.31:1 on bg (AA)
+    --color-accent-hover: #1f56e3;
+    --color-accent-soft: rgb(42 90 226 / 0.1);
+    --color-accent-surface: #2857d8;     // filled action surfaces — white text 6.10:1 (AA)
+    --color-accent-surface-hover: #1f56e3; // white text 6.00:1 (AA)
+    --color-on-accent: #ffffff;
+
+    --color-text-primary: #0f1220;
+    --color-text-secondary: #4b566b;
+    --color-text-disabled: #98a1b3;
+
+    --color-border: #dde2ec;
+    --color-border-strong: #c3cadd;
+
+    --color-danger: #d93843;
+    --color-danger-hover: #c02b36;
+    --color-danger-soft: rgb(217 56 67 / 0.08);
+    --color-warning: #b87408;
+    --color-warning-soft: rgb(184 116 8 / 0.1);
+    --color-success: #1f7a4d;
+    --color-success-soft: rgb(31 122 77 / 0.1);
+
+    --color-focus-ring: #1f56e3;
+
+    --color-scrim: rgb(15 18 32 / 0.34);
+}

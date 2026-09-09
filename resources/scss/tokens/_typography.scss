@@ -1,0 +1,53 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Typography tokens — Blue Design System.
+// Latin: Inter (variable, self-hosted). Persian: Vazirmatn (self-hosted).
+// Letter-spacing rules: never applied to Persian (ADR-013).
+// ─────────────────────────────────────────────────────────────────────────────
+
+:root {
+    // Families
+    --font-sans: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont,
+        'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-sans-fa: 'Vazirmatn', 'Vazir', 'Inter', -apple-system, 'Segoe UI',
+        Tahoma, sans-serif;
+    --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas,
+        'Liberation Mono', monospace;
+
+    // Heading scale
+    --text-display: clamp(2.75rem, 6vw, 4.5rem);
+    --text-h1: clamp(2.25rem, 4.5vw, 3.5rem);
+    --text-h2: clamp(1.75rem, 3vw, 2.5rem);
+    --text-h3: clamp(1.375rem, 2vw, 1.75rem);
+
+    // Body scale
+    --text-body-large: clamp(1.125rem, 1.5vw, 1.3125rem);
+    --text-body: 1rem;
+    --text-small: 0.875rem;
+    --text-caption: 0.75rem;
+    --text-label: 0.8125rem;
+
+    // Weights
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    // Line heights
+    --leading-tight: 1.15;
+    --leading-snug: 1.35;
+    --leading-normal: 1.6;
+    --leading-relaxed: 1.8;
+
+    // Letter spacing (Latin only; Persian overrides to 0)
+    --tracking-tight: -0.025em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.08em;
+
+    // Persian adjustments (ADR-013: taller leading, no wide tracking)
+    [dir='rtl'] & {
+        --leading-normal: 1.75;
+        --leading-relaxed: 1.9;
+        --tracking-tight: 0;
+        --tracking-wide: 0;
+    }
+}

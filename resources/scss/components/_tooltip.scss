@@ -1,0 +1,60 @@
+// Tooltip — CSS hover/focus reveal; requires aria-describedby on the trigger.
+// Opens below the trigger, centered; logical positioning for RTL.
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+
+    &__trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-1);
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--color-text-secondary);
+        font-size: inherit;
+        cursor: help;
+
+        &:hover,
+        &:focus-visible {
+            color: var(--color-text-primary);
+        }
+    }
+
+    &__bubble {
+        position: absolute;
+        inset-block-start: calc(100% + var(--space-2));
+        inset-inline-start: 50%;
+        transform: translateX(-50%);
+        z-index: 30;
+        inline-size: max-content;
+        max-inline-size: 16rem;
+        padding: var(--space-2) var(--space-3);
+        border-radius: var(--radius-sm);
+        background-color: var(--color-bg-elevated);
+        border: var(--border);
+        color: var(--color-text-primary);
+        font-size: var(--text-caption);
+        line-height: var(--leading-snug);
+        box-shadow: var(--shadow-sm);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--motion-fast) var(--ease-out);
+    }
+
+    &:hover .tooltip__bubble,
+    &:focus-within .tooltip__bubble {
+        opacity: 1;
+    }
+}
+
+[dir='rtl'] .tooltip__bubble {
+    transform: translateX(50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tooltip__bubble {
+        transition: none;
+    }
+}

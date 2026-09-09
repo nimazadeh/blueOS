@@ -1,0 +1,16 @@
+// Base element styling on top of tokens. No layout logic here.
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--color-accent-hover);
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+    }
+}
+
+// Logical text alignment — RTL-safe by construction in Phase 1A.
+.text-start { text-align: start; }
+.text-center { text-align: center; }

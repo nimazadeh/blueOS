@@ -1,0 +1,157 @@
+// Public header — sticky, responsive. Mobile (< desktop): hamburger + drawer.
+// Desktop (>= 1280): inline navigation + CTA. RTL mirrored via logical props.
+
+.site-header {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 50;
+    background-color: color-mix(in srgb, var(--color-bg-deep) 86%, transparent);
+    backdrop-filter: blur(10px);
+    border-block-end: var(--border);
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-4);
+        min-block-size: 68px;
+    }
+
+    &__brand {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-3);
+        font-weight: var(--font-weight-semibold);
+        color: var(--color-text-primary);
+        text-decoration: none;
+
+        &-mark {
+            inline-size: 28px;
+            block-size: 28px;
+            border-radius: var(--radius-sm);
+            background: var(--color-accent-surface);
+            display: grid;
+            place-items: center;
+            color: var(--color-on-accent);
+            font-size: var(--text-small);
+            font-weight: var(--font-weight-bold);
+        }
+    }
+
+    // ── Desktop navigation ──────────────────────────────────────────────────
+    &__nav {
+        display: none;
+        align-items: center;
+        gap: var(--space-2);
+    }
+
+    &__link {
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius-sm);
+        color: var(--color-text-secondary);
+        font-size: var(--text-small);
+        font-weight: var(--font-weight-medium);
+
+        &:hover {
+            color: var(--color-text-primary);
+            background-color: var(--color-bg-surface);
+        }
+
+        &[aria-current='page'] {
+            color: var(--color-text-primary);
+        }
+    }
+
+    &__actions {
+        display: none;
+        align-items: center;
+        gap: var(--space-3);
+    }
+
+    // ── Mobile toggle ────────────────────────────────────────────────────────
+    &__toggle {
+        display: inline-grid;
+        place-items: center;
+        inline-size: 44px;
+        block-size: 44px;
+        border-radius: var(--radius-sm);
+        color: var(--color-text-primary);
+
+        &:hover {
+            background-color: var(--color-bg-surface);
+        }
+    }
+
+    &__toggle-icon,
+    &__toggle-icon::before,
+    &__toggle-icon::after {
+        content: '';
+        display: block;
+        inline-size: 20px;
+        block-size: 2px;
+        background-color: currentcolor;
+        border-radius: 2px;
+        transition: transform var(--motion-fast) var(--ease-out),
+            opacity var(--motion-fast) var(--ease-out);
+    }
+
+    &__toggle-icon::before {
+        transform: translateY(-6px);
+    }
+
+    &__toggle-icon::after {
+        transform: translateY(4px);
+    }
+
+    &__toggle[aria-expanded='true'] .site-header__toggle-icon {
+        background: transparent;
+
+        &::before {
+            transform: translateY(0) rotate(45deg);
+        }
+
+        &::after {
+            transform: translateY(0) rotate(-45deg);
+        }
+    }
+}
+
+// ── Breakpoints ─────────────────────────────────────────────────────────────
+@media (min-width: 1280px) {
+    .site-header__nav,
+    .site-header__actions {
+        display: flex;
+    }
+
+    .site-header__toggle {
+        display: none;
+    }
+}
+
+// Drawer navigation list (mobile) — lives inside the accessible drawer.
+.drawer-nav {
+    display: grid;
+    gap: var(--space-1);
+    margin-block: var(--space-6);
+
+    &__link {
+        padding: var(--space-3) var(--space-4);
+        border-radius: var(--radius-sm);
+        color: var(--color-text-primary);
+        font-size: var(--text-body-large);
+        font-weight: var(--font-weight-medium);
+
+        &:hover,
+        &[aria-current='page'] {
+            background-color: var(--color-bg-surface);
+        }
+    }
+
+    &__section-label {
+        margin-block: var(--space-4) var(--space-2);
+        color: var(--color-text-disabled);
+        font-size: var(--text-caption);
+        letter-spacing: var(--tracking-wide);
+        text-transform: uppercase;
+    }
+}

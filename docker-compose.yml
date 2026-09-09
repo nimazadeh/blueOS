@@ -1,0 +1,80 @@
+name: blue-studio-os
+
+services:
+  # ── PHP-FPM application container ─────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    environment:
+      APP_ENV: ${APP_ENV:-local}
+      APP_KEY: ${APP_KEY:-}
+      APP_DEBUG: ${APP_DEBUG:-true}
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: ${DB_DATABASE:-blueos}
+      DB_USERNAME: ${DB_USERNAME:-blueos}
+      DB_PASSWORD: ${DB_PASSWORD:-blueos}
+      CACHE_STORE: database
+      SESSION_DRIVER: database
+      QUEUE_CONNECTION: database
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - blue
+
+  # ── MySQL 8 ───────────────────────────────────────────────────────────────
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-blueos}
+      MYSQL_USER: ${DB_USERNAME:-blueos}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-blueos}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root}
+    ports:
+      - "${DB_PORT_FORWARD:-3306}:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-root}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      - blue
+
+  # ── nginx (serves the app; one static file server, no extra app in prod) ──
+  nginx:
+    image: nginx:1.27-alpine
+    ports:
+      - "${APP_HTTP_PORT:-8000}:80"
+    volumes:
+      - ./:/var/www/html:ro
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - app
+    networks:
+      - blue
+
+  # ── Node build container (optional: `docker compose --profile assets up`) ──
+  node:
+    image: node:22-alpine
+    profiles: ["assets"]
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: sh -c "npm ci && npm run build"
+    networks:
+      - blue
+
+volumes:
+  db-data:
+
+networks:
+  blue:
+    driver: bridge
