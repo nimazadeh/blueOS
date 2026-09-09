@@ -1,0 +1,34 @@
+// Motion utilities (Phase 1B) — reveal system driven by data attributes.
+// JS adds .is-revealed via IntersectionObserver (modules/motion.js).
+// Reduced motion: forced visible in base/_accessibility.scss.
+
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(var(--distance-md));
+    transition:
+        opacity var(--motion-slow) var(--ease-out),
+        transform var(--motion-slow) var(--ease-out);
+    will-change: opacity, transform;
+
+    &.is-revealed {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+// Direction-aware slide: from the inline-start edge.
+[data-reveal='slide-start'] {
+    transform: translateX(var(--distance-md));
+}
+
+[data-reveal='slide-end'] {
+    transform: translateX(calc(-1 * var(--distance-md)));
+}
+
+[dir='rtl'] [data-reveal='slide-start'] {
+    transform: translateX(calc(-1 * var(--distance-md)));
+}
+
+[dir='rtl'] [data-reveal='slide-end'] {
+    transform: translateX(var(--distance-md));
+}

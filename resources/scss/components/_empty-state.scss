@@ -1,0 +1,39 @@
+// Empty state — honest UI for sections that have no content yet.
+// Used by products / portfolio / insights placeholders (no fake content).
+
+.empty-state {
+    display: grid;
+    place-items: center;
+    gap: var(--space-3);
+    padding: var(--space-8) var(--space-5);
+    text-align: center;
+    border: 1px dashed var(--color-border-strong);
+    border-radius: var(--radius-md);
+    background-color: var(--color-bg-inset);
+
+    &__icon {
+        display: grid;
+        place-items: center;
+        inline-size: 56px;
+        block-size: 56px;
+        border-radius: var(--radius-full);
+        background-color: var(--color-bg-elevated);
+        color: var(--color-text-secondary);
+        font-size: var(--text-h3);
+    }
+
+    &__title {
+        font-size: var(--text-h3);
+        font-weight: var(--font-weight-semibold);
+    }
+
+    &__description {
+        max-inline-size: 34rem;
+        color: var(--color-text-secondary);
+        font-size: var(--text-small);
+    }
+
+    &__action {
+        margin-block-start: var(--space-2);
+    }
+}

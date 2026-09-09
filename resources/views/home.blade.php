@@ -1,21 +1,52 @@
-@extends('layouts.app')
+@extends('layouts.public.app', ['meta' => $meta])
+
+@section('head')
+    {{-- Page-specific head extras (e.g. preloads) land here. --}}
+@endsection
 
 @section('content')
-    <section class="hero">
-        <p class="eyebrow">@lang('blue.home.eyebrow')</p>
-        <h1 class="hero__title">@lang('blue.home.title')</h1>
-        <p class="hero__lead">@lang('blue.home.lead')</p>
-        <p class="hero__note">@lang('blue.home.foundation_note')</p>
+    {{-- ── Hero ──────────────────────────────────────────────────────────── --}}
+    <section class="hero" aria-labelledby="hero-title">
+        <div class="container">
+            <div class="hero__inner">
+                <p class="eyebrow hero__eyebrow" data-reveal>{{ __('blue.home.eyebrow') }}</p>
+                <h1 id="hero-title" class="hero__title text-display" data-reveal>
+                    {{ __('blue.home.headline') }}
+                </h1>
+                <p class="hero__description" data-reveal>{{ __('blue.home.lead') }}</p>
+                <div class="hero__actions" data-reveal>
+                    <x-ui.button href="#start-project" size="lg">
+                        {{ __('blue.home.cta_start') }}
+                    </x-ui.button>
+                    <x-ui.button href="#products" variant="secondary" size="lg">
+                        {{ __('blue.home.cta_products') }}
+                    </x-ui.button>
+                </div>
+            </div>
+
+            {{-- Static, decorative visual module (3D may enhance later). --}}
+            <div class="hero__visual" aria-hidden="true"></div>
+        </div>
     </section>
 
-    <section class="foundation-status" aria-label="@lang('blue.home.status_label')">
-        <h2 class="section-title">@lang('blue.home.status_title')</h2>
-        <ul class="foundation-status__list">
-            <li>@lang('blue.home.status_database')</li>
-            <li>@lang('blue.home.status_auth')</li>
-            <li>@lang('blue.home.status_rtl')</li>
-            <li>@lang('blue.home.status_assets')</li>
-        </ul>
-        <p class="foundation-status__empty">@lang('blue.home.empty_state')</p>
+    {{-- ── Featured products (empty state, no fabricated content) ────────── --}}
+    <x-products.featured-list :products="collect()" />
+
+    {{-- ── Services (real offering catalog) ──────────────────────────────── --}}
+    <x-services.featured-grid :services="$services" />
+
+    {{-- ── Portfolio preview (empty state) ───────────────────────────────── --}}
+    <x-portfolio.preview-list :projects="collect()" />
+
+    {{-- ── Lead-generation CTA ───────────────────────────────────────────── --}}
+    <section class="cta-section" id="start-project" aria-labelledby="cta-title">
+        <div class="container">
+            <div class="cta-section__panel" data-reveal>
+                <p class="eyebrow">{{ __('blue.home.cta_eyebrow') }}</p>
+                <h2 id="cta-title" class="cta-section__title text-h2">{{ __('blue.home.cta_title') }}</h2>
+                <p class="cta-section__description">{{ __('blue.home.cta_description') }}</p>
+                <x-ui.badge tone="warning" :dot="true">{{ __('blue.home.cta_status') }}</x-ui.badge>
+            </div>
+        </div>
     </section>
 @endsection

@@ -1,0 +1,53 @@
+// Badge — technologies / categories / statuses.
+// Tones map to semantic colors; text + subtle bg (never color-only meaning).
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--space-1) + 2px);
+    padding-block: calc(var(--space-1) - 1px);
+    padding-inline: var(--space-3);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-elevated);
+    color: var(--color-text-secondary);
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-wide);
+    white-space: nowrap;
+
+    &--accent {
+        border-color: var(--color-accent-soft);
+        background-color: var(--color-accent-soft);
+        color: var(--color-accent);
+    }
+
+    &--success {
+        border-color: var(--color-success-soft);
+        background-color: var(--color-success-soft);
+        color: var(--color-success);
+    }
+
+    &--warning {
+        border-color: var(--color-warning-soft);
+        background-color: var(--color-warning-soft);
+        color: var(--color-warning);
+    }
+
+    &--danger {
+        border-color: var(--color-danger-soft);
+        background-color: var(--color-danger-soft);
+        color: var(--color-danger);
+    }
+
+    &__dot {
+        inline-size: 6px;
+        block-size: 6px;
+        border-radius: var(--radius-full);
+        background-color: currentcolor;
+    }
+}
+
+[dir='rtl'] .badge {
+    letter-spacing: 0;
+}

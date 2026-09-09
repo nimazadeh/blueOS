@@ -1,8 +1,0 @@
-// Eyebrow label. Phase 1A: weight/size hierarchy, no uppercase letter-spacing
-// pitfall for Persian (ADR-013).
-
-.eyebrow {
-    font-size: var(--text-label-size);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-accent);
-}

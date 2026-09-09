@@ -1,0 +1,54 @@
+// Dropdown menu — keyboard accessible (arrow keys, Esc, click-outside).
+// JS: resources/js/modules/accessibility.js (initDropdowns).
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+
+    &__trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+    }
+
+    &__menu {
+        position: absolute;
+        inset-block-start: calc(100% + var(--space-2));
+        inset-inline-end: 0;
+        z-index: 30;
+        min-inline-size: 14rem;
+        padding: var(--space-2);
+        border: var(--border-strong);
+        border-radius: var(--radius-md);
+        background-color: var(--color-bg-elevated);
+        box-shadow: var(--shadow-md);
+
+        &[hidden] {
+            display: none;
+        }
+    }
+
+    &__item {
+        display: block;
+        inline-size: 100%;
+        text-align: start;
+        padding: var(--space-3) var(--space-4);
+        border-radius: var(--radius-sm);
+        color: var(--color-text-primary);
+        font-size: var(--text-small);
+
+        &:hover,
+        &:focus-visible {
+            background-color: var(--color-bg-surface);
+        }
+
+        &[aria-current='true'] {
+            color: var(--color-accent);
+        }
+    }
+}
+
+[dir='rtl'] .dropdown__menu {
+    inset-inline-end: auto;
+    inset-inline-start: 0;
+}

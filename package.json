@@ -5,9 +5,13 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "watch": "vite build --watch"
+        "watch": "vite build --watch",
+        "test:e2e": "playwright test",
+        "test:e2e:install": "playwright install chromium"
     },
     "devDependencies": {
+        "@axe-core/playwright": "^4.13.0",
+        "@playwright/test": "^1.63.0",
         "laravel-vite-plugin": "^3.2",
         "sass": "^1.104",
         "vite": "^8.0"

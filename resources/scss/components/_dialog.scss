@@ -1,0 +1,70 @@
+// Dialog (modal) — accessible overlay pattern.
+// JS handles focus trap/restore/ESC (resources/js/modules/accessibility.js).
+
+.dialog {
+    &__backdrop {
+        position: fixed;
+        inset: 0;
+        background-color: var(--color-scrim);
+        backdrop-filter: blur(2px);
+        z-index: 40;
+    }
+
+    &__panel {
+        position: fixed;
+        inset-inline: 50%;
+        inset-block-start: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 50;
+        inline-size: min(94vw, 32rem);
+        max-block-size: 86dvh;
+        overflow-y: auto;
+        padding: var(--space-6);
+        border: var(--border-strong);
+        border-radius: var(--radius-lg);
+        background-color: var(--color-bg-elevated);
+        box-shadow: var(--shadow-lg);
+    }
+
+    &__title {
+        font-size: var(--text-h2);
+        margin-block-end: var(--space-4);
+    }
+
+    &__close {
+        position: absolute;
+        inset-block-start: var(--space-4);
+        inset-inline-end: var(--space-4);
+        inline-size: 40px;
+        block-size: 40px;
+        display: grid;
+        place-items: center;
+        border-radius: var(--radius-sm);
+        color: var(--color-text-secondary);
+
+        &:hover {
+            color: var(--color-text-primary);
+            background-color: var(--color-bg-surface);
+        }
+    }
+
+    // RTL: logical inset already mirrors the close button correctly.
+
+    &[aria-hidden='true'] {
+        display: none;
+    }
+}
+
+// Mobile: sheet-style dialog.
+@media (max-width: 767px) {
+    .dialog__panel {
+        inset-block-end: 0;
+        inset-block-start: auto;
+        inset-inline: 0;
+        inline-size: 100%;
+        transform: none;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+}
+
+

@@ -1,0 +1,63 @@
+// Accessibility baseline — WCAG 2.2 AA foundation (Phase 1B).
+
+// Focus visibility is a hard requirement: never removed without replacement.
+:focus-visible {
+    outline: 3px solid var(--color-focus-ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
+}
+
+@supports not (outline-style: auto) {
+    :focus-visible {
+        outline: 3px solid var(--color-focus-ring);
+    }
+}
+
+// Skip link: first focusable element, visually hidden until focused.
+.skip-link {
+    position: absolute;
+    inset-block-start: var(--space-2);
+    inset-inline-start: var(--space-3);
+    z-index: 200;
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+    font-weight: var(--font-weight-medium);
+    transform: translateY(-250%);
+
+    &:focus {
+        transform: translateY(0);
+    }
+}
+
+// Reduced motion: the safety net for everything, including future GSAP layers
+// (docs/animation-system.md). Reveals below are handled by JS + this rule.
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    [data-reveal] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+// Visually hidden but available to assistive technology.
+.visually-hidden {
+    position: absolute !important;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}

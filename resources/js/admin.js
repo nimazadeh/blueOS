@@ -1,12 +1,13 @@
 /**
  * Blue Control JS entry (Vite input).
- *
- * Phase 1A: placeholder entrypoint proving the split. Admin interactivity
- * (Livewire-driven) arrives with the Blue Control phase.
+ * Shares the accessibility module; Livewire interactivity lands later.
  */
 
 import { syncDirection } from './modules/core';
+import { initDialogBehavior, initDropdowns } from './modules/accessibility';
 
 document.addEventListener('DOMContentLoaded', () => {
   syncDirection();
+  initDialogBehavior();
+  initDropdowns();
 });

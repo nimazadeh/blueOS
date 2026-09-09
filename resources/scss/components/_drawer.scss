@@ -1,0 +1,76 @@
+// Drawer — side panel used by the mobile navigation.
+// Slides from the inline-start edge; logical inset mirrors for RTL.
+
+.drawer {
+    &__backdrop {
+        position: fixed;
+        inset: 0;
+        background-color: var(--color-scrim);
+        z-index: 60;
+    }
+
+    &__panel {
+        position: fixed;
+        inset-block: 0;
+        inset-inline-start: 0;
+        z-index: 70;
+        inline-size: min(86vw, 22rem);
+        overflow-y: auto;
+        padding: var(--space-6);
+        background-color: var(--color-bg-elevated);
+        border-inline-end: var(--border-strong);
+        transform: translateX(-100%);
+        transition: transform var(--motion-base) var(--ease-in-out);
+    }
+
+    &--open .drawer__panel {
+        transform: translateX(0);
+    }
+
+    &__header,
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-3);
+    }
+
+    &__close {
+        inline-size: 40px;
+        block-size: 40px;
+        display: grid;
+        place-items: center;
+        border-radius: var(--radius-sm);
+        color: var(--color-text-secondary);
+
+        &:hover {
+            color: var(--color-text-primary);
+            background-color: var(--color-bg-surface);
+        }
+    }
+
+    &[aria-hidden='true'] {
+        pointer-events: none;
+    }
+}
+
+// RTL: slide from the right (logical start).
+[dir='rtl'] .drawer__panel {
+    inset-inline-start: auto;
+    inset-inline-end: 0;
+    border-inline-end: none;
+    border-inline-start: var(--border-strong);
+    transform: translateX(100%);
+}
+
+[dir='rtl'] .drawer--open .drawer__panel {
+    transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .drawer__panel {
+        transition: none;
+    }
+}
+
+
